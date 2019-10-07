@@ -1,0 +1,119 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+# Example configuration.yaml entry
+device_tracker:
+  - platform: bluetooth_tracker
+    track_new_devices: true
+
+  - platform: tile
+    username: zachmccandless@gmail.com
+    password: Andless1
+wemo:
+  discovery: false
+  static:
+    - 172.16.1.84
+    - 172.16.1.85
+    - 172.16.1.66
+tuya:
+  username: "3066209217"
+  password: Emogeek18
+  country_code: 1
+  platform: smart_life
+
+
+light:
+  - platform: flux_led
+    devices:
+      172.16.1.79:
+        name: outside stairs
+frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-floorplan.html
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+
+
+hacs:
+  token: ac3c0b6e9ec766f8f500fdfa93a24189daeee90d
+  appdaemon: true
+  python_script: true
+  theme: true
+binary_sensor:
+  - platform: wyzesense
+    device: "/dev/hidraw0"
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'Fridge door'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '0552D9'
+    payload_off: '0552D3'
+    device_class: cold
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'upstairs hallway'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '1FE1A6'
+    payload_off: '1FE1A6off'
+    device_class: motion
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'backdoor'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '050573'
+    payload_off: '050579'
+    device_class: door
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'basement hallway'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '0AD9A6'
+    payload_off: '0AD9A6off'
+    device_class: motion
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'toggle switch'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '0A8796'
+    payload_off: '0A8796off'
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'toggle switch 2'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '00E156'
+    payload_off: '00E156off'
+  - platform: mqtt
+    state_topic: "tele/sonoff/RESULT"
+    name: 'Master Bedroom Window'
+    value_template: '{{value_json.RfReceived.Data}}'
+    payload_on: '06F736'
+    payload_off: '06F736off'
+    device_class: window
+input_boolean:
+  toggle:
+    name: toggle switch
+    initial: off
+  toggle2:
+    name: bedside toggle
+    initial: off
+homekit:
+
+# Example configuration.yaml entry
+alarm_control_panel:
+  - platform: manual
+
+    
