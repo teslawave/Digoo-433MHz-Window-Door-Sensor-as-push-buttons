@@ -1,0 +1,1 @@
+This takes a 433 mhz window sensor from digoo and uses the sonoff 433 hub flashed with tasmoto and mqtt to make a push button switch to toggle or turn off anything in hassio
