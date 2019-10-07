@@ -9,50 +9,6 @@ tts:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
-
-# Example configuration.yaml entry
-device_tracker:
-  - platform: bluetooth_tracker
-    track_new_devices: true
-
-  - platform: tile
-    username: zachmccandless@gmail.com
-    password: Andless1
-wemo:
-  discovery: false
-  static:
-    - 172.16.1.84
-    - 172.16.1.85
-    - 172.16.1.66
-tuya:
-  username: "3066209217"
-  password: Emogeek18
-  country_code: 1
-  platform: smart_life
-
-
-light:
-  - platform: flux_led
-    devices:
-      172.16.1.79:
-        name: outside stairs
-frontend:
-  extra_html_url:
-    - /local/custom_ui/state-card-floorplan.html
-
-panel_custom:
-  - name: floorplan
-    sidebar_title: Floorplan
-    sidebar_icon: mdi:home
-    url_path: floorplan
-    config: !include floorplan.yaml
-
-
-hacs:
-  token: ac3c0b6e9ec766f8f500fdfa93a24189daeee90d
-  appdaemon: true
-  python_script: true
-  theme: true
 binary_sensor:
   - platform: wyzesense
     device: "/dev/hidraw0"
