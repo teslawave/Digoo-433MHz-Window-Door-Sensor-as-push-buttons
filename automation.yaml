@@ -1,4 +1,4 @@
-  alias: Reset toggle switch
+- alias: Reset toggle switch
   trigger:
   - entity_id: binary_sensor.toggle_switch
     for: 00:00:01
@@ -11,7 +11,7 @@
       topic: tele/sonoff/RESULT
     service: mqtt.publish
 - id: '1570374809523'
-  alias: toggle input boolean
+- alias: toggle input boolean
   trigger:
   - entity_id: binary_sensor.toggle_switch
     from: 'off'
